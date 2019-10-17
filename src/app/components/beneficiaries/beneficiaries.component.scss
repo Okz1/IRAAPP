@@ -1,0 +1,19 @@
+@import "~src/assets/scss/var";
+
+.wrap {
+  padding: 50px;
+}
+.title {
+  margin: 0 0 60px 0;
+  text-transform: uppercase;
+  font-size: 22px;
+  font-weight: 300;
+  color: $default-color;
+  letter-spacing: 3px;
+}
+
+.sub-title {
+  color: $black-color;
+  font-size: 18px;
+  font-weight: 700;
+}
