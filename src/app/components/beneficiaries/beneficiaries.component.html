@@ -1,4 +1,23 @@
 <section class="wrap">
   <h2 class="title">Beneficiaries</h2>
   <h3 class="sub-title">Primary Beneficiaries</h3>
+
+  <form class="beneficiar" [formGroup]="form">
+    <div formArrayName="beneficiaries" *ngFor="let beneficiar of beneficiariesArray.value; let i = index">
+      <div>#{{i}}</div>
+      <ng-container [formGroupName]="i">
+        <input type="text" formControlName="name" >
+        <input type="text" formControlName="date" >
+        <input type="text" formControlName="type" >
+        <input type="text" formControlName="optional" >
+        <input type="text" formControlName="relationShip" >
+        <input type="text" formControlName="amount" >
+      </ng-container>
+      <button *ngIf="beneficiariesArray.value.length !== 1" (click)="removeBeneficiar(i)">remove</button>
+    </div>
+  </form>
+
+  <button (click)="addBeneficiar()">Add</button>
+
+  <button>Next</button>
 </section>
