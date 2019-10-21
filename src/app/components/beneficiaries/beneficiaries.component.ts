@@ -63,7 +63,7 @@ export class BeneficiariesComponent implements OnInit {
     return this.fb.group({
       name: ['', [Validators.required]],
       date: ['', [Validators.required]],
-      type: ['', []],
+      type: ['', [Validators.required]],
       optional: ['', []],
       relationShip: ['', [Validators.required]],
       amount: [0, [Validators.required, Validators.max(100)]],
