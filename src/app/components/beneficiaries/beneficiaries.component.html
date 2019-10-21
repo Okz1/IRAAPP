@@ -5,18 +5,62 @@
   <form class="beneficiar" [formGroup]="form">
     <div formArrayName="beneficiaries" *ngFor="let beneficiar of beneficiariesArray.controls; let i = index" >
       <div [formGroupName]="i">
-        <input type="text" formControlName="name" >
-        <input type="text" formControlName="date" >
-        <input type="text" formControlName="type" >
-        <input type="text" formControlName="optional" >
-        <input type="text" formControlName="relationShip" >
-        <input type="text" formControlName="amount" >
+        <div class="form-row">
+          <div class="form-group col">
+            <label class="form-label">Name</label>
+            <input type="text" class="form-control" placeholder="Name" formControlName="name">
+          </div>
+          <div class="form-group col">
+            <label class="form-label">Date of Birth</label>
+            <input type="date" class="form-control" placeholder="Date" formControlName="date">
+          </div>
+          <div class="form-group col">
+            <label class="form-label"></label>
+            <select class="form-control" formControlName="type">
+              <option value="SNN">SNN</option>
+              <option value="BNN">BNN</option>
+            </select>
+          </div>
+          <div class="form-group col">
+            <label class="form-label"></label>
+            <input type="text" class="form-control" placeholder="Optional" formControlName="optional">
+          </div>
+          <div class="form-group col">
+            <label class="form-label">Relationship</label>
+            <select class="form-control" formControlName="relationShip">
+              <option value="Maried">Maried</option>
+              <option value="Friendzone">Friendzone</option>
+            </select>
+          </div>
+          <div class="form-group col">
+            <label class="form-label"></label>
+            <input type="number" class="form-control" placeholder="0%" formControlName="amount">
+          </div>
+          <div class="col">
+            <span 
+                class="remove action" 
+                *ngIf="beneficiariesArray.value.length !== 1"
+                (click)="removeBeneficiar(i)">
+              <i class="fa fa-times" aria-hidden="true"></i>
+            </span>
+            <span 
+                class="add action"
+                *ngIf="beneficiariesArray.value.length === (i+1)"
+                (click)="addBeneficiar()">
+              <i class="fa fa-check" aria-hidden="true"></i>
+            </span>
+            
+            <!-- <button *ngIf="beneficiariesArray.value.length !== 1" (click)="removeBeneficiar(i)">remove</button> -->
+          </div>
+        </div>
+        
+        
       </div>
-      <button *ngIf="beneficiariesArray.value.length !== 1" (click)="removeBeneficiar(i)">remove</button>
     </div>
   </form>
+  
+  <!-- <button (click)="addBeneficiar()">Add</button> -->
 
-  <button (click)="addBeneficiar()">Add</button>
-
-  <button>Next</button>
+  <p>primary total: {{total}}%</p>
+  <button [disabled]="total < 100">Next</button>
 </section>

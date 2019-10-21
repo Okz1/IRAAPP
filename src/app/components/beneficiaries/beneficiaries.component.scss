@@ -17,3 +17,22 @@
   font-size: 18px;
   font-weight: 700;
 }
+
+.form-label {
+  position: absolute;
+}
+
+.form-control {
+  margin-top: 25px;
+}
+
+.action {
+  position: relative;
+  top: 24px;
+  font-size: 22px;
+  margin-right: 5px;
+}
+.action:hover {cursor: pointer;}
+
+.remove {color: red;}
+.add {color: $check-color;}
