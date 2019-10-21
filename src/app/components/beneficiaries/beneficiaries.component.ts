@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 interface Beneficiar {
   name: string;
@@ -17,7 +17,8 @@ interface Beneficiar {
 })
 export class BeneficiariesComponent implements OnInit {
 
-  form: FormGroup;
+  public total = 0;
+  public form: FormGroup;
 
   get beneficiariesArray(): FormArray {
     return this.form.controls['beneficiaries'] as FormArray;
@@ -27,16 +28,29 @@ export class BeneficiariesComponent implements OnInit {
 
   ngOnInit() {
     this.createForm();
+    this.form.valueChanges.subscribe(() => {
+      this.calcTotal();
+    });
   }
 
   addBeneficiar(): void {
-    this.beneficiariesArray.push(this.creteBeneficiar());
+    if (this.total !== 100) {
+      this.beneficiariesArray.push(this.creteBeneficiar());
+    }
   }
 
   removeBeneficiar(beneficiarIndex: number): void {
     if (!(this.beneficiariesArray.value.length === 1)) {
       this.beneficiariesArray.removeAt(beneficiarIndex);
     }
+  }
+
+  calcTotal(): void {
+    this.total = 0;
+    this.beneficiariesArray.value.forEach(beneficiar => {
+      this.total += beneficiar.amount;
+      if (this.total > 100) this.total = 100;
+    });
   }
 
   private createForm(): void {
@@ -47,12 +61,12 @@ export class BeneficiariesComponent implements OnInit {
 
   private creteBeneficiar(): FormGroup {
     return this.fb.group({
-      name: [''],
-      date: [''],
-      type: [''],
-      optional: [''],
-      relationShip: [''],
-      amount: [''],
+      name: ['', [Validators.required]],
+      date: ['', [Validators.required]],
+      type: ['', [Validators.required]],
+      optional: ['', []],
+      relationShip: ['', [Validators.required]],
+      amount: [0, [Validators.required, Validators.max(100)]],
     });
   }
 

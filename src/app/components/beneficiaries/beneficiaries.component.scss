@@ -17,3 +17,44 @@
   font-size: 18px;
   font-weight: 700;
 }
+
+.form-label {
+  position: absolute;
+}
+
+.form-row {
+  position: relative;
+}
+
+.form-control {
+  margin-top: 25px;
+}
+
+.actions {
+  position: absolute;
+  right: -78px;
+  width: 75px;
+
+  &__item {
+    position: relative;
+    top: 24px;
+    font-size: 24px;
+  }
+}
+.actions__item:hover {cursor: pointer;}
+
+.remove {color: red;}
+.add {color: $check-color;}
+
+.form-control {
+  background-color: $grey-color;
+  border: none;
+}
+
+.alert {
+  float: right;
+}
+
+.next-step {
+  margin-top: 60px;
+}
