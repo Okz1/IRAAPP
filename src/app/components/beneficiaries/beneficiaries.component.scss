@@ -22,17 +22,39 @@
   position: absolute;
 }
 
+.form-row {
+  position: relative;
+}
+
 .form-control {
   margin-top: 25px;
 }
 
-.action {
-  position: relative;
-  top: 24px;
-  font-size: 22px;
-  margin-right: 5px;
+.actions {
+  position: absolute;
+  right: -78px;
+  width: 75px;
+
+  &__item {
+    position: relative;
+    top: 24px;
+    font-size: 24px;
+  }
 }
-.action:hover {cursor: pointer;}
+.actions__item:hover {cursor: pointer;}
 
 .remove {color: red;}
 .add {color: $check-color;}
+
+.form-control {
+  background-color: $grey-color;
+  border: none;
+}
+
+.alert {
+  float: right;
+}
+
+.next-step {
+  margin-top: 60px;
+}

@@ -7,6 +7,8 @@ import { SideMenuComponent } from './components/side-menu/side-menu.component';
 import { BeneficiariesComponent } from './components/beneficiaries/beneficiaries.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 @NgModule({
   declarations: [
@@ -20,6 +22,7 @@ import { CommonModule } from '@angular/common';
     ReactiveFormsModule,
     FormsModule,
     CommonModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

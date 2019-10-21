@@ -28,27 +28,28 @@ export class BeneficiariesComponent implements OnInit {
 
   ngOnInit() {
     this.createForm();
+    this.form.valueChanges.subscribe(() => {
+      this.calcTotal();
+    });
   }
 
   addBeneficiar(): void {
-    this.calcTotal();
-    this.beneficiariesArray.push(this.creteBeneficiar());
-    console.log(this.beneficiariesArray);
-  
+    if (this.total !== 100) {
+      this.beneficiariesArray.push(this.creteBeneficiar());
+    }
   }
 
   removeBeneficiar(beneficiarIndex: number): void {
     if (!(this.beneficiariesArray.value.length === 1)) {
       this.beneficiariesArray.removeAt(beneficiarIndex);
-      this.calcTotal();
     }
   }
 
   calcTotal(): void {
-    // let total;
     this.total = 0;
     this.beneficiariesArray.value.forEach(beneficiar => {
       this.total += beneficiar.amount;
+      if (this.total > 100) this.total = 100;
     });
   }
 
@@ -62,10 +63,10 @@ export class BeneficiariesComponent implements OnInit {
     return this.fb.group({
       name: ['', [Validators.required]],
       date: ['', [Validators.required]],
-      type: ['', [Validators.required]],
-      optional: ['', [Validators.required]],
+      type: ['', []],
+      optional: ['', []],
       relationShip: ['', [Validators.required]],
-      amount: [0, [Validators.required]],
+      amount: [0, [Validators.required, Validators.max(100)]],
     });
   }
 
